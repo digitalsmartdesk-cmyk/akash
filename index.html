@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akash Gupta — Visual Artist &amp; Art Educator</title>
+<meta name="description" content="Portfolio of Akash Gupta, visual artist and art educator based in Jaipur, Rajasthan. Paintings, school murals, education, and achievements.">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ── Lightbox ── -->
+<div id="lightbox" class="lightbox" hidden>
+  <img id="lightbox-img" class="lightbox__img" src="" alt="">
+  <div class="lightbox__caption">
+    <div id="lightbox-title" class="lightbox__title"></div>
+    <div id="lightbox-meta" class="lightbox__meta"></div>
+  </div>
+  <button type="button" id="lightbox-close" class="lightbox__close" aria-label="Close">✕</button>
+</div>
+
+<!-- ── Nav ── -->
+<nav class="nav">
+  <div class="nav__mark">AG</div>
+  <div class="nav__links">
+    <a href="#work">Work</a>
+    <a href="#murals">Murals</a>
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero__blob hero__blob--warm"></div>
+  <div class="hero__blob hero__blob--cool"></div>
+
+  <div class="hero__text">
+    <div class="eyebrow">Visual Artist &amp; Art Educator · Jaipur, Rajasthan</div>
+    <h1 class="hero__title">AKASH<br>GUPTA</h1>
+    <div class="hero__sub">
+      <span class="hero__rule"></span>
+      <span>Master of Visual Arts · University of Rajasthan</span>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="strip__track" id="strip-track">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAINTINGS GALLERY ═══════════ -->
+<section id="work" class="section section--paintings">
+  <div class="section__head">
+    <div class="eyebrow eyebrow--accent">Selected Works</div>
+    <h2 class="section__title">Canvas &amp; Paper</h2>
+    <p class="section__lede">Acrylic &amp; Oil · 2011–2015</p>
+  </div>
+  <div class="masonry" id="paintings-grid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- ═══════════ MURALS GALLERY ═══════════ -->
+<section id="murals" class="section section--murals">
+  <div class="section__head">
+    <div class="eyebrow eyebrow--green">Public Works</div>
+    <h2 class="section__title">School Murals</h2>
+    <p class="section__lede">Large-scale wall paintings · Jaipur</p>
+  </div>
+  <div class="mural-grid" id="murals-grid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" class="section section--about">
+  <div class="about">
+    <div>
+      <div class="eyebrow eyebrow--accent">About</div>
+      <h2 class="section__title">Painting as<br>a way of thinking</h2>
+      <p class="about__p">Trained visual artist holding a Master of Visual Arts, with a strong grounding in painting, composition, and Indian contemporary and modern art.</p>
+      <p class="about__p">His work spans bold figurative canvases, conceptual compositions, and immersive large-scale murals — all united by a vibrant colour sensibility and a deep engagement with the social world around him.</p>
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__num">10+</div>
+          <div class="stat__label">Years of Practice</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">30+</div>
+          <div class="stat__label">Works Created</div>
+        </div>
+        <div class="stat">
+          <div class="stat__num">4+</div>
+          <div class="stat__label">Exhibitions</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow eyebrow--accent">Artist Statement</div>
+      <blockquote class="statement">
+        "My practice seeks to combine creative expression with the social and cultural life that surrounds us. I aim to inspire — whether on canvas or on a school wall — and to contribute meaningfully through art."
+      </blockquote>
+      <div class="panel">
+        <div class="panel__label">Skills</div>
+        <ul class="bullets">
+          <li>Adapting teaching methods to students of varying abilities</li>
+          <li>Clear, engaging communication that connects with students</li>
+          <li>Designing student-centred lesson approaches</li>
+          <li>Motivating students to recognise their individual strengths</li>
+          <li>Painting: Acrylic, Oil, Mix Media on canvas &amp; paper</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section id="education" class="section section--education">
+  <div class="education">
+    <div class="eyebrow eyebrow--accent">Education</div>
+    <h2 class="section__title section__title--tight">Academic Background</h2>
+    <div class="timeline">
+      <div class="timeline__item">
+        <div class="timeline__year">2014</div>
+        <div>
+          <div class="timeline__title">Master of Visual Arts</div>
+          <div class="timeline__school">University of Rajasthan</div>
+          <div class="timeline__detail">Painting · Indian Contemporary &amp; Modern Art · Life Study · Composition</div>
+        </div>
+      </div>
+      <div class="timeline__item">
+        <div class="timeline__year">2012</div>
+        <div>
+          <div class="timeline__title">Bachelor of Visual Arts</div>
+          <div class="timeline__school">University of Rajasthan</div>
+          <div class="timeline__detail">Painting · Indian Contemporary &amp; Modern Art · Life Study · Composition</div>
+        </div>
+      </div>
+      <div class="timeline__item timeline__item--last">
+        <div class="timeline__year">2005</div>
+        <div>
+          <div class="timeline__title">Senior Secondary Examination</div>
+          <div class="timeline__school">U.P. Board, Allahabad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ACHIEVEMENTS &amp; EXPERIENCE ═══════════ -->
+<section class="section section--split">
+  <div class="split">
+    <div>
+      <div class="eyebrow eyebrow--accent">Achievements</div>
+      <h2 class="section__title section__title--tight">Exhibitions &amp;<br>Competitions</h2>
+      <div class="entries">
+        <div class="entry">
+          <div class="entry__year">2011</div>
+          <div>
+            <div class="entry__title">Cartoon Contest on Climate Change</div>
+            <div class="entry__meta">British Council Climate Change Forum</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__year">2010</div>
+          <div>
+            <div class="entry__title">Painting Workshop Participant</div>
+            <div class="entry__meta">Bhagwan Mahaveer Cancer Hospital &amp; Research Centre</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__year">2009</div>
+          <div>
+            <div class="entry__title">13th Creative Kala Mela</div>
+            <div class="entry__meta">Jaipur</div>
+          </div>
+        </div>
+        <div class="entry">
+          <div class="entry__year">—</div>
+          <div>
+            <div class="entry__title">Maulana Abul Kalam Azad Memorial Art Competition</div>
+            <div class="entry__meta">Faculty of Fine Arts, University of Rajasthan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow eyebrow--accent">Experience</div>
+      <h2 class="section__title section__title--tight">Teaching &amp;<br>Practice</h2>
+      <div class="panel">
+        <div class="panel__title">Visual Artist (Painting)</div>
+        <div class="panel__tag">Teaching Practice</div>
+        <ul class="bullets bullets--tight">
+          <li>Guided and inspired peers to explore new artistic techniques</li>
+          <li>Coordinated with parents on student progress and development</li>
+          <li>Organised group activities to build collaboration among students</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" class="section section--contact">
+  <div class="contact">
+    <div class="eyebrow eyebrow--accent">Contact</div>
+    <h2 class="contact__title">Let's connect.</h2>
+    <div class="contact__list">
+      <a class="contact__card contact__card--link" href="mailto:akashgupta2278@gmail.com">
+        <div class="contact__icon contact__icon--accent">✉</div>
+        <div>
+          <div class="contact__label">Email</div>
+          <div class="contact__value">akashgupta2278@gmail.com</div>
+        </div>
+      </a>
+      <div class="contact__card">
+        <div class="contact__icon">✆</div>
+        <div>
+          <div class="contact__label">Phone</div>
+          <div class="contact__value">+91 92279 06042</div>
+        </div>
+      </div>
+      <div class="contact__card">
+        <div class="contact__icon">◈</div>
+        <div>
+          <div class="contact__label">Location</div>
+          <div class="contact__value">K-104, Mahima Panorama, Jaipur, Rajasthan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__mark">AKASH GUPTA</div>
+  <div class="footer__tag">Visual Artist · Jaipur</div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
