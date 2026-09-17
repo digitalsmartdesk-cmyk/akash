@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: #FDFAF5; color: #2A1C14; font-family: 'DM Sans', sans-serif; }
+    a { text-decoration: none; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes stripScroll { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  </style>
+</helmet>
+
+<!-- ── Lightbox ── -->
+<sc-if value="{{ hasLightbox }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeLightbox }}" style="position:fixed;inset:0;z-index:2000;background:rgba(18,10,4,0.93);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;animation:fadeIn 0.18s ease;cursor:zoom-out;">
+    <img src="{{ lightboxSrc }}" style="max-height:82vh;max-width:88vw;object-fit:contain;border-radius:4px;box-shadow:0 32px 80px rgba(0,0,0,0.6);" />
+    <div style="text-align:center;">
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;color:#FDF8F2;letter-spacing:0.01em;">{{ lightboxTitle }}</div>
+      <div style="font-size:12px;color:#C47B5A;letter-spacing:0.1em;margin-top:6px;text-transform:uppercase;">{{ lightboxMeta }}</div>
+    </div>
+    <div style="position:absolute;top:24px;right:28px;color:#FDF8F2;font-size:24px;opacity:0.4;cursor:pointer;">✕</div>
+  </div>
+</sc-if>
+
+<!-- ── Nav ── -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:500;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(253,250,245,0.88);backdrop-filter:blur(12px);border-bottom:1px solid rgba(42,28,20,0.07);">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;letter-spacing:0.12em;color:#2A1C14;">AG</div>
+  <div style="display:flex;gap:28px;">
+    <a href="#work" style="color:#2A1C14;font-size:12px;letter-spacing:0.08em;opacity:0.5;font-family:'DM Sans',sans-serif;text-transform:uppercase;" style-hover="opacity:1">Work</a>
+    <a href="#murals" style="color:#2A1C14;font-size:12px;letter-spacing:0.08em;opacity:0.5;font-family:'DM Sans',sans-serif;text-transform:uppercase;" style-hover="opacity:1">Murals</a>
+    <a href="#about" style="color:#2A1C14;font-size:12px;letter-spacing:0.08em;opacity:0.5;font-family:'DM Sans',sans-serif;text-transform:uppercase;" style-hover="opacity:1">About</a>
+    <a href="#education" style="color:#2A1C14;font-size:12px;letter-spacing:0.08em;opacity:0.5;font-family:'DM Sans',sans-serif;text-transform:uppercase;" style-hover="opacity:1">Education</a>
+    <a href="#contact" style="color:#2A1C14;font-size:12px;letter-spacing:0.08em;opacity:0.5;font-family:'DM Sans',sans-serif;text-transform:uppercase;" style-hover="opacity:1">Contact</a>
+  </div>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section style="background:linear-gradient(150deg,#F7EFE4 0%,#EDE4D6 60%,#E8DDD0 100%);min-height:100vh;display:grid;grid-template-rows:1fr auto;overflow:hidden;position:relative;">
+  <!-- Soft ambient blobs -->
+  <div style="position:absolute;top:-60px;right:-40px;width:520px;height:520px;background:radial-gradient(circle,oklch(0.88 0.06 55) 0%,transparent 65%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:160px;left:-60px;width:320px;height:320px;background:radial-gradient(circle,oklch(0.88 0.05 145) 0%,transparent 65%);pointer-events:none;"></div>
+
+  <!-- Hero text -->
+  <div style="display:flex;flex-direction:column;justify-content:flex-end;padding:130px 60px 52px;animation:fadeUp 0.9s ease both;">
+    <div style="font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.24em;color:#C47B5A;font-weight:500;margin-bottom:18px;text-transform:uppercase;">Visual Artist &amp; Art Educator · Jaipur, Rajasthan</div>
+    <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(60px,10vw,148px);font-weight:800;color:#2A1C14;line-height:0.9;letter-spacing:-0.025em;">AKASH<br/>GUPTA</h1>
+    <div style="display:flex;align-items:center;gap:14px;margin-top:32px;">
+      <div style="width:40px;height:2px;background:#C47B5A;border-radius:2px;"></div>
+      <span style="font-family:'DM Sans',sans-serif;font-size:13px;color:#2A1C14;opacity:0.45;letter-spacing:0.05em;">Master of Visual Arts · University of Rajasthan</span>
+    </div>
+  </div>
+
+  <!-- Scrolling artwork strip -->
+  <div style="overflow:hidden;height:200px;position:relative;">
+    <div style="display:flex;gap:10px;width:max-content;animation:stripScroll 44s linear infinite;padding:8px 5px;">
+      <sc-for list="{{ stripImages }}" as="si" hint-placeholder-count="16">
+        <div style="width:240px;height:184px;flex-shrink:0;border-radius:10px;overflow:hidden;background:#DDD5C8;box-shadow:0 4px 18px rgba(42,28,20,0.1);">
+          <img src="{{ si.src }}" style="width:100%;height:100%;object-fit:cover;" />
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PAINTINGS GALLERY ═══════════ -->
+<section id="work" style="background:#FDFAF5;padding:96px 0 80px;">
+  <div style="padding:0 60px;margin-bottom:48px;">
+    <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:12px;font-weight:600;">Selected Works</div>
+    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,50px);font-weight:800;color:#2A1C14;line-height:1.05;">Canvas &amp; Paper</h2>
+    <p style="font-size:14px;color:#2A1C14;opacity:0.4;margin-top:8px;font-style:italic;">Acrylic &amp; Oil · 2011–2015</p>
+  </div>
+  <div style="padding:0 60px;columns:3 300px;gap:12px;">
+    <sc-for list="{{ paintings }}" as="painting" hint-placeholder-count="12">
+      <div onClick="{{ painting.onClick }}" style="break-inside:avoid;margin-bottom:12px;cursor:zoom-in;overflow:hidden;border-radius:10px;background:#EDE8E0;position:relative;" style-hover="box-shadow:0 12px 40px rgba(42,28,20,0.14)">
+        <img src="{{ painting.src }}" style="width:100%;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(42,28,20,0.7) 0%,transparent 50%);opacity:0;transition:opacity 0.22s ease;" style-hover="opacity:1"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:14px 14px;opacity:0;transition:opacity 0.22s ease;" style-hover="opacity:1">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:#FDFAF5;">{{ painting.title }}</div>
+          <div style="font-size:11px;color:#FDFAF5;opacity:0.6;margin-top:2px;letter-spacing:0.04em;">{{ painting.meta }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ MURALS GALLERY ═══════════ -->
+<section id="murals" style="background:#EBF0EC;padding:96px 0 80px;">
+  <div style="padding:0 60px;margin-bottom:48px;">
+    <div style="font-size:10px;letter-spacing:0.22em;color:#6A9E78;text-transform:uppercase;margin-bottom:12px;font-weight:600;">Public Works</div>
+    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(30px,4vw,50px);font-weight:800;color:#2A1C14;line-height:1.05;">School Murals</h2>
+    <p style="font-size:14px;color:#2A1C14;opacity:0.4;margin-top:8px;font-style:italic;">Large-scale wall paintings · Jaipur</p>
+  </div>
+  <div style="padding:0 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;">
+    <sc-for list="{{ murals }}" as="mural" hint-placeholder-count="8">
+      <div onClick="{{ mural.onClick }}" style="cursor:zoom-in;border-radius:10px;overflow:hidden;background:#D8E2DA;position:relative;aspect-ratio:4/3;" style-hover="box-shadow:0 12px 40px rgba(42,28,20,0.14)">
+        <img src="{{ mural.src }}" style="width:100%;height:100%;object-fit:cover;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(42,28,20,0.65) 0%,transparent 50%);opacity:0;transition:opacity 0.22s ease;" style-hover="opacity:1"></div>
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:16px;opacity:0;transition:opacity 0.22s ease;" style-hover="opacity:1">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;color:#FDFAF5;">{{ mural.title }}</div>
+          <div style="font-size:11px;color:#FDFAF5;opacity:0.6;margin-top:2px;">{{ mural.meta }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about" style="background:#FDFAF5;padding:96px 60px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1200px;">
+    <div>
+      <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">About</div>
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3vw,40px);font-weight:800;color:#2A1C14;line-height:1.1;margin-bottom:24px;">Painting as<br/>a way of thinking</h2>
+      <p style="font-size:15px;line-height:1.8;color:#2A1C14;opacity:0.65;margin-bottom:14px;">Trained visual artist holding a Master of Visual Arts, with a strong grounding in painting, composition, and Indian contemporary and modern art.</p>
+      <p style="font-size:15px;line-height:1.8;color:#2A1C14;opacity:0.65;">His work spans bold figurative canvases, conceptual compositions, and immersive large-scale murals — all united by a vibrant colour sensibility and a deep engagement with the social world around him.</p>
+      <div style="display:flex;gap:36px;margin-top:40px;padding-top:36px;border-top:1px solid rgba(42,28,20,0.1);">
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:30px;font-weight:800;color:#C47B5A;">10+</div>
+          <div style="font-size:11px;color:#2A1C14;opacity:0.45;margin-top:3px;letter-spacing:0.05em;">Years of Practice</div>
+        </div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:30px;font-weight:800;color:#C47B5A;">30+</div>
+          <div style="font-size:11px;color:#2A1C14;opacity:0.45;margin-top:3px;letter-spacing:0.05em;">Works Created</div>
+        </div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:30px;font-weight:800;color:#C47B5A;">4+</div>
+          <div style="font-size:11px;color:#2A1C14;opacity:0.45;margin-top:3px;letter-spacing:0.05em;">Exhibitions</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Artist Statement</div>
+      <div style="border-left:3px solid #C47B5A;padding-left:22px;margin-bottom:28px;">
+        <p style="font-size:17px;line-height:1.7;color:#2A1C14;font-style:italic;font-weight:300;opacity:0.8;">"My practice seeks to combine creative expression with the social and cultural life that surrounds us. I aim to inspire — whether on canvas or on a school wall — and to contribute meaningfully through art."</p>
+      </div>
+      <div style="background:#F2EAE0;border-radius:10px;padding:28px;">
+        <div style="font-size:10px;letter-spacing:0.18em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Skills</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:5px;height:5px;background:#C47B5A;border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:#2A1C14;opacity:0.7;line-height:1.55;">Adapting teaching methods to students of varying abilities</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:5px;height:5px;background:#C47B5A;border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:#2A1C14;opacity:0.7;line-height:1.55;">Clear, engaging communication that connects with students</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:5px;height:5px;background:#C47B5A;border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:#2A1C14;opacity:0.7;line-height:1.55;">Designing student-centred lesson approaches</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:5px;height:5px;background:#C47B5A;border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:#2A1C14;opacity:0.7;line-height:1.55;">Motivating students to recognise their individual strengths</span>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:10px;">
+            <div style="width:5px;height:5px;background:#C47B5A;border-radius:50%;margin-top:6px;flex-shrink:0;"></div>
+            <span style="font-size:14px;color:#2A1C14;opacity:0.7;line-height:1.55;">Painting: Acrylic, Oil, Mix Media on canvas &amp; paper</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section id="education" style="background:#F2EAE0;padding:96px 60px;">
+  <div style="max-width:1200px;">
+    <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Education</div>
+    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3vw,40px);font-weight:800;color:#2A1C14;margin-bottom:52px;line-height:1.1;">Academic Background</h2>
+    <div style="display:flex;flex-direction:column;">
+      <div style="display:grid;grid-template-columns:90px 1fr;gap:28px;padding:28px 0;border-bottom:1px solid rgba(42,28,20,0.1);">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:#C47B5A;line-height:1;">2014</div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#2A1C14;margin-bottom:4px;">Master of Visual Arts</div>
+          <div style="font-size:13px;color:#2A1C14;opacity:0.45;margin-bottom:8px;">University of Rajasthan</div>
+          <div style="font-size:13px;color:#2A1C14;opacity:0.35;font-style:italic;">Painting · Indian Contemporary &amp; Modern Art · Life Study · Composition</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:90px 1fr;gap:28px;padding:28px 0;border-bottom:1px solid rgba(42,28,20,0.1);">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:#C47B5A;line-height:1;">2012</div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#2A1C14;margin-bottom:4px;">Bachelor of Visual Arts</div>
+          <div style="font-size:13px;color:#2A1C14;opacity:0.45;margin-bottom:8px;">University of Rajasthan</div>
+          <div style="font-size:13px;color:#2A1C14;opacity:0.35;font-style:italic;">Painting · Indian Contemporary &amp; Modern Art · Life Study · Composition</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:90px 1fr;gap:28px;padding:28px 0;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:26px;font-weight:800;color:#C47B5A;line-height:1;">2005</div>
+        <div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:#2A1C14;margin-bottom:4px;">Senior Secondary Examination</div>
+          <div style="font-size:13px;color:#2A1C14;opacity:0.45;">U.P. Board, Allahabad</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ACHIEVEMENTS ═══════════ -->
+<section style="background:#FDFAF5;padding:96px 60px;">
+  <div style="max-width:1200px;display:grid;grid-template-columns:1fr 1fr;gap:80px;">
+    <div>
+      <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Achievements</div>
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3vw,40px);font-weight:800;color:#2A1C14;margin-bottom:36px;line-height:1.1;">Exhibitions &amp;<br/>Competitions</h2>
+      <div style="display:flex;flex-direction:column;gap:22px;">
+        <div style="display:flex;gap:18px;align-items:flex-start;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#C47B5A;min-width:36px;padding-top:2px;letter-spacing:0.04em;">2011</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:#2A1C14;line-height:1.4;">Cartoon Contest on Climate Change</div>
+            <div style="font-size:12px;color:#2A1C14;opacity:0.4;margin-top:3px;">British Council Climate Change Forum</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#C47B5A;min-width:36px;padding-top:2px;letter-spacing:0.04em;">2010</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:#2A1C14;line-height:1.4;">Painting Workshop Participant</div>
+            <div style="font-size:12px;color:#2A1C14;opacity:0.4;margin-top:3px;">Bhagwan Mahaveer Cancer Hospital &amp; Research Centre</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#C47B5A;min-width:36px;padding-top:2px;letter-spacing:0.04em;">2009</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:#2A1C14;line-height:1.4;">13th Creative Kala Mela</div>
+            <div style="font-size:12px;color:#2A1C14;opacity:0.4;margin-top:3px;">Jaipur</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:18px;align-items:flex-start;">
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:#C47B5A;min-width:36px;padding-top:2px;">—</div>
+          <div>
+            <div style="font-size:14px;font-weight:500;color:#2A1C14;line-height:1.4;">Maulana Abul Kalam Azad Memorial Art Competition</div>
+            <div style="font-size:12px;color:#2A1C14;opacity:0.4;margin-top:3px;">Faculty of Fine Arts, University of Rajasthan</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Experience</div>
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(26px,3vw,40px);font-weight:800;color:#2A1C14;margin-bottom:36px;line-height:1.1;">Teaching &amp;<br/>Practice</h2>
+      <div style="background:#F2EAE0;border-radius:10px;padding:28px;">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:#2A1C14;margin-bottom:4px;">Visual Artist (Painting)</div>
+        <div style="font-size:11px;color:#C47B5A;letter-spacing:0.08em;margin-bottom:18px;text-transform:uppercase;font-weight:600;">Teaching Practice</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:4px;height:4px;background:#C47B5A;border-radius:50%;margin-top:7px;flex-shrink:0;"></div>
+            <span style="font-size:13px;color:#2A1C14;opacity:0.65;line-height:1.6;">Guided and inspired peers to explore new artistic techniques</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:4px;height:4px;background:#C47B5A;border-radius:50%;margin-top:7px;flex-shrink:0;"></div>
+            <span style="font-size:13px;color:#2A1C14;opacity:0.65;line-height:1.6;">Coordinated with parents on student progress and development</span>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;">
+            <div style="width:4px;height:4px;background:#C47B5A;border-radius:50%;margin-top:7px;flex-shrink:0;"></div>
+            <span style="font-size:13px;color:#2A1C14;opacity:0.65;line-height:1.6;">Organised group activities to build collaboration among students</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact" style="background:#F2EAE0;padding:96px 60px;">
+  <div style="max-width:680px;">
+    <div style="font-size:10px;letter-spacing:0.22em;color:#C47B5A;text-transform:uppercase;margin-bottom:16px;font-weight:600;">Contact</div>
+    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(36px,5vw,68px);font-weight:800;color:#2A1C14;line-height:1.0;margin-bottom:44px;">Let's connect.</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <a href="mailto:akashgupta2278@gmail.com" style="display:flex;align-items:center;gap:16px;padding:20px 22px;background:#FDFAF5;border-radius:10px;border:1px solid rgba(42,28,20,0.08);transition:border-color 0.2s,box-shadow 0.2s;" style-hover="border-color:rgba(196,123,90,0.4);box-shadow:0 4px 20px rgba(196,123,90,0.12)">
+        <div style="width:36px;height:36px;background:#C47B5A;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:#fff;">✉</div>
+        <div>
+          <div style="font-size:10px;color:#2A1C14;opacity:0.35;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;font-weight:600;">Email</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:600;color:#2A1C14;">akashgupta2278@gmail.com</div>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:16px;padding:20px 22px;background:#FDFAF5;border-radius:10px;border:1px solid rgba(42,28,20,0.08);">
+        <div style="width:36px;height:36px;background:#E8D5C4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">✆</div>
+        <div>
+          <div style="font-size:10px;color:#2A1C14;opacity:0.35;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;font-weight:600;">Phone</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:600;color:#2A1C14;">+91 92279 06042</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;padding:20px 22px;background:#FDFAF5;border-radius:10px;border:1px solid rgba(42,28,20,0.08);">
+        <div style="width:36px;height:36px;background:#E8D5C4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;">◈</div>
+        <div>
+          <div style="font-size:10px;color:#2A1C14;opacity:0.35;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;font-weight:600;">Location</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:600;color:#2A1C14;">K-104, Mahima Panorama, Jaipur, Rajasthan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background:#EDE8DF;padding:22px 60px;display:flex;align-items:center;justify-content:space-between;">
+  <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:#2A1C14;opacity:0.3;letter-spacing:0.1em;">AKASH GUPTA</div>
+  <div style="font-size:11px;color:#2A1C14;opacity:0.25;letter-spacing:0.06em;">Visual Artist · Jaipur</div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { lightbox: null };
+
+  renderVals() {
+    const open = (item) => this.setState({ lightbox: item });
+    const close = () => this.setState({ lightbox: null });
+    const lb = this.state.lightbox;
+
+    const rawPaintings = [
+      { src: 'uploads/lite/Untitled-2.jpg',      title: 'Untitled I',                   medium: 'Mix media on canvas',  year: 2011 },
+      { src: 'uploads/lite/1.jpg',               title: 'A Foolish Man',                medium: 'Acrylic on canvas',    year: 2011 },
+      { src: 'uploads/lite/Untitled-1 copy.jpg', title: 'An Alone Bird',                medium: 'Acrylic on canvas',    year: 2012 },
+      { src: 'uploads/lite/10.jpg',              title: 'Untitled',                     medium: 'Acrylic on canvas',    year: 2012 },
+      { src: 'uploads/lite/11.jpg',              title: 'Untitled',                     medium: 'Oil on canvas',        year: 2012 },
+      { src: 'uploads/lite/23.jpg',              title: 'Sun Set',                      medium: 'Acrylic on canvas',    year: 2012 },
+      { src: 'uploads/lite/2.jpg',               title: 'Untitled',                     medium: 'Acrylic on paper',     year: 2013 },
+      { src: 'uploads/lite/3.jpg',               title: 'Untitled',                     medium: 'Acrylic on paper',     year: 2013 },
+      { src: 'uploads/lite/4.jpg',               title: 'Untitled',                     medium: 'Acrylic on canvas',    year: 2014 },
+      { src: 'uploads/lite/5.jpg',               title: 'Untitled',                     medium: 'Mix media on paper',   year: 2014 },
+      { src: 'uploads/lite/7.jpg',               title: 'Untitled',                     medium: 'Acrylic on canvas',    year: 2014 },
+      { src: 'uploads/lite/8.jpg',               title: 'An Umbrella',                  medium: 'Acrylic on canvas',    year: 2014 },
+      { src: 'uploads/lite/9.jpg',               title: 'Untitled',                     medium: 'Acrylic on canvas',    year: 2014 },
+      { src: 'uploads/lite/6.jpg',               title: 'Untitled',                     medium: 'Mix media on canvas',  year: 2014 },
+      { src: 'uploads/lite/Untitled-3 copy.jpg', title: 'Night Scene of Nakki Lake',    medium: 'Oil on canvas',        year: 2015 },
+      { src: 'uploads/lite/Untitled-4 copy.jpg', title: 'Untitled',                     medium: 'Oil on canvas',        year: 2015 },
+      { src: 'uploads/lite/Untitled-5 copy.jpg', title: 'Untitled',                     medium: 'Oil on canvas',        year: 2015 },
+      { src: 'uploads/lite/Untitled-6.jpg',      title: 'Untitled',                     medium: 'Oil on canvas',        year: 2015 },
+    ];
+
+    const rawMurals = [
+      { src: 'uploads/lite/IMG_0014.jpg',                                          title: 'Children Cycling',          meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/IMG_0022.jpg',                                          title: 'Nature Alphabet Classroom', meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/IMG_0034.jpg',                                          title: 'Jungle Friends',            meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/IMG_0041.jpg',                                          title: 'Wildlife Classroom',        meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/IMG_0047.jpg',                                          title: 'Classroom Overview',        meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/IMG_0058.jpg',                                          title: 'Jungle Panorama',           meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.26 PM.jpeg',         title: 'Children at Play',          meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.27 PM.jpeg',         title: 'Alphabet Tree Mural',       meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.29 PM.jpeg',         title: 'Animal Kingdom',            meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.34 PM.jpeg',         title: 'Lion Family',               meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.35 PM.jpeg',         title: 'Tiger Mural',               meta: 'Wall mural · School, Jaipur' },
+      { src: 'uploads/lite/WhatsApp Image 2026-06-24 at 1.29.36 PM.jpeg',         title: 'Alphabet Splash Tree',      meta: 'Wall mural · School, Jaipur' },
+    ];
+
+    const paintings = rawPaintings.map(painting => ({
+      src: painting.src,
+      title: painting.title,
+      meta: painting.medium + ' · ' + painting.year,
+      onClick: () => open({ src: painting.src, title: painting.title, meta: painting.medium + '  ·  ' + painting.year }),
+    }));
+
+    const murals = rawMurals.map(mural => ({
+      src: mural.src,
+      title: mural.title,
+      meta: mural.meta,
+      onClick: () => open({ src: mural.src, title: mural.title, meta: mural.meta }),
+    }));
+
+    const stripSrcs = [
+      'uploads/lite/Untitled-3 copy.jpg',
+      'uploads/lite/1.jpg',
+      'uploads/lite/Untitled-1 copy.jpg',
+      'uploads/lite/10.jpg',
+      'uploads/lite/9.jpg',
+      'uploads/lite/8.jpg',
+      'uploads/lite/Untitled-6.jpg',
+      'uploads/lite/Untitled-2.jpg',
+    ];
+    const stripImages = stripSrcs.concat(stripSrcs).map((src, i) => ({ src: src, id: i }));
+
+    return {
+      paintings: paintings,
+      murals: murals,
+      stripImages: stripImages,
+      hasLightbox: lb !== null,
+      lightboxSrc: lb ? lb.src : '',
+      lightboxTitle: lb ? lb.title : '',
+      lightboxMeta: lb ? lb.meta : '',
+      closeLightbox: close,
+    };
+  }
+}
+</script>
+</body>
+</html>
